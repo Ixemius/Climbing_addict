@@ -1,24 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const postRemoveButtonsList = document.querySelectorAll('.js-remove-post-button');
     const productRemoveButtonList = document.querySelectorAll('.js-remove-product-button');
-    const addProduct = document.querySelectorAll('.js-add-bucket')
-    console.log(product);
-
-    if(addProduct.length > 0){
-        addProduct.forEach(function (product){
-            product.addEventListener('click', function(event){
-                const buttonElement = event.target;
-                const id = buttonElement.getAttribute('data-id');
-                const option= {
-                    method: 'get',
-                    header: {
-                        'content-type' : 'application/json'
-                    }
-                };
-                
-            })
-        })
-    }
 
     if (postRemoveButtonsList.length > 0) {
         postRemoveButtonsList.forEach(function (postRemoveButton) {

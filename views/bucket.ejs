@@ -1,0 +1,11 @@
+<section>
+    <article class="produc-bucket">
+        <%for(let i=0; i < order.length; i++) {%>
+            <div class="product" data-id="<%=order[i].id%>">
+                <h3><%=order[i].name%></h3>
+                <p><%=order[i].description%></p>
+                <p><%=order[i].total_amount%> €</p>
+                <img src="/<%=order[i].img_path %>" alt="img produit">
+            <% } %>
+    </article>
+</section>

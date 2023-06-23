@@ -7,7 +7,7 @@ const router = express.Router();
 //appel des controllers
 import {Home} from "../controllers/home.js";
 import {Login, LoginSubmit, Logout} from "../controllers/login.js";
-import {Shop} from "../controllers/shop.js";
+import {Shop, AddBucketSubmit,dipslayBucket} from "../controllers/shop.js";
 import {About} from "../controllers/about.js";
 import {Register, RegisterSubmit} from "../controllers/register.js";
 import {Admin, AddPost, AddPostSubmit, AddProduct, AddProductSubmit, DeletePost, EditPost, EditPostSubmit, DeleteProduct, EditProductSubmit, EditProduct} from "../controllers/admin.js";
@@ -32,6 +32,10 @@ router.get('/logout', Logout)
 router.get('/shop', Shop);
 
 router.post('/shop', Shop);
+
+router.get('/add_bucket', dipslayBucket )
+
+router.post('/add_bucket/:id', AddBucketSubmit);
 
 // //REGSITER PAGE
 router.get('/register', Register);

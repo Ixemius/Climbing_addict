@@ -1,7 +1,7 @@
 <h1>Page Boutique</h1>
 <section>
     <article>
-        <button>Aficher le panier</button>
+        <a href="/add_bucket/">Afficher le panier</a>
     </article>
 
 </section>
@@ -13,14 +13,17 @@
 				<p><%=products[i].description%></p>
                 <p><%=products[i].price%> €</p>
 				<img src="<%= products[i].img_path %>">
-                <select>
+                <form method="post" action="/add_bucket/">
+                <select name="quantity">
+                    <option value="0">Selectionner la quantité</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <button class="js-add-bucket" data-id="<%=products[i].id%>">ajouter ou panier</button>	
+                <input type="submit" value="Ajouter au panier">
+            </form>
         </div>
         <%}%>
     </article>
