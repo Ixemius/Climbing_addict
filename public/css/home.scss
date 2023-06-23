@@ -1,0 +1,40 @@
+// style de la page home
+.section-article {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+
+    * {
+        margin: 0.5rem;
+    }
+
+    ul {
+        li {
+            margin: 0.5rem;
+        }
+    }
+}
+
+.img-article {
+    height: 15rem;
+}
+
+.display-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ul > * {
+        padding:0.5rem;
+    }
+    ul > li {
+        list-style: none;
+    }
+}

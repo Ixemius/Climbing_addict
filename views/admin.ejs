@@ -1,0 +1,55 @@
+<h1>PAGE ADMIN</h1>
+
+<h1>Admin</h1>
+
+<a href="/add_post">Ajouter un article</a>
+<a href="/add_product">Ajouter un produit</a>
+
+<table class='js-posts-table'>
+	<thead>
+			<th>Titre</th>
+            <th>Article</th>
+            <th>Catégorie</th>
+            <th></th>
+	</thead>
+	<tbody>
+		<% for(let i = 0; i < postsArticle.length; i++) { %>
+			<tr data-id="<%=postsArticle[i].id%>">
+				<td>
+					<a class="back" href="/article/<%=postsArticle[i].id%>"><%=postsArticle[i].title%></a>
+				</td>
+				<td><%=postsArticle[i].content.substring(0, 30)%> ...</td>
+				<td><%=postsArticle[i].name%></td>
+				<td>
+                    <button class="remove js-remove-post-button" data-id="<%=postsArticle[i].id%>">suprimer le post</button>
+                </td>
+				<td><a href="/edit_post/<%=postsArticle[i].id%>">modifier l'article</a></td>
+			</tr>
+		<% } %>
+	</tbody>
+</table>
+
+<table class='js-products-table'>
+	<thead>
+			<th>NOM</th>
+            <th>PRODUIT</th>
+            <th>Catégorie</th>
+            <th></th>
+	</thead>
+	<tbody>
+		<% for(let i = 0; i < postsProduit.length; i++) { %>
+			<tr data-id="<%=postsProduit[i].id%>">
+				<td>
+					<a class="back" href="/article/<%=postsProduit[i].id%>"><%=postsProduit[i].name%></a>
+				</td>
+				<td><%=postsProduit[i].description.substring(0, 30)%> ...</td>
+				<td><%=postsProduit[i].categories%></td>
+				<td>
+                    <button class="remove js-remove-product-button" data-id="<%=postsProduit[i].id%>">suprimer le produit</button>
+                </td>
+				<td><a href="/edit_product/<%=postsProduit[i].id%>">modifier l'article</a></td>
+			</tr>
+		<% } %>
+	</tbody>
+</table>
+<script src="/js/index.js"></script>

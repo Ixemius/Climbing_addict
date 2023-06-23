@@ -1,0 +1,19 @@
+<h1>Editez un produit</h1>
+
+<form action="/edit_product/<%=editProduct.id%>" method="post">
+	<label>nom du produit</label>
+	<input type="text" name="name" value="<%=editProduct.name%>">
+	<label>description du produit</label>
+	<textarea name="description"><%=editProduct.description%></textarea>
+    <label>Prix du produit</label>
+	<input type="text" name="price" value="<%=editProduct.price%>">
+    <label>quantite du produit</label>
+	<input type="text" name="stock_quantity" value="<%=editProduct.stock_quantity%>">
+    <label>catégories du produit</label>
+	<select name="categories_name">
+        <% for(let i = 0; i < editProductCate.length; i++) { %>
+            <option value="<%=editProductCate[i].id%>"><%=editProductCate[i].name%></option>
+        <% } %>
+    </select>
+	<input type="submit" name="Enregistrer">
+</form>

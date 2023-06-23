@@ -1,0 +1,14 @@
+<fieldset>
+    <form action="/login" method="post">
+        <% if(error !==null ){ %>
+            <p class="error">
+                <%= error %>
+            </p>
+            <% } %>
+                <label>Email</label>
+                <input type="email" name="email" id="email">
+                <label>Mot de passe</label>
+                <input type="password" name="password" id="password">
+                <input type="submit" name="submit" id="submit">
+    </form>
+</fieldset>

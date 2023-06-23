@@ -1,0 +1,2 @@
+ce projet a pour but de me permetrre d'obtenir mon titre rncp de niveau 5 en tant que developpeur web fullstack, il a pour thème l'escalade 
+il comporte différente fonctionalité comme la connexion ou l'inscription des utilisateur, l'ajout d'article et de commenjntaire sous les articles, et une boutique en ligne qui permet au tuilisateur de s'équiper pour faire de l'escalade

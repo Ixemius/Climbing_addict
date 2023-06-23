@@ -1,0 +1,20 @@
+<fieldset>
+    <form action="/add_product" enctype="multipart/form-data" method="post">
+        <label>Nom du produit</label>
+        <input type="text" name="name" id="name">
+        <label>Description du produit</label>
+        <input type="text" name="description" id="desc">
+        <label>prix</label>
+        <input type="number" name="price" id="price">
+        <label>quantité en stock</label>
+        <input type="number" name="stock_quantity" id="stock_quantity">
+        <select name="categories">
+            <% for(let i = 0; i < categories.length; i++) { %>
+                <option value="<%=categories[i].id%>"><%=categories[i].name%></option>
+            <% } %>
+        </select>
+        <label>choisir une image</label>
+        <input type="file" name="img">
+        <input type="submit">
+    </form>
+</fieldset>

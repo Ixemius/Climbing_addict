@@ -1,0 +1,41 @@
+:root {
+    --backcolor: rgba(217,217,217,0.4);
+}
+
+
+body {
+    margin : auto;
+    background-image: url(../img/31un_f01i_220222.jpg);
+    background-color: rgba(255, 255, 255, 0.875);
+    background-blend-mode: overlay;
+    background-repeat: repeat-y;
+    background-size: contain;
+    
+}
+p {
+    text-align: justify;
+}
+.logo{
+    width: 30%;
+    margin: 1rem;
+}
+.title_logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    background-image: url('../img/header.jpg');
+    height: 40%;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+}
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:var(--backcolor);
+}

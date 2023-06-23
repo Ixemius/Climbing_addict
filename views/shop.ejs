@@ -1,0 +1,28 @@
+<h1>Page Boutique</h1>
+<section>
+    <article>
+        <button>Aficher le panier</button>
+    </article>
+
+</section>
+<section>
+    <article>
+        <%for(let i = 0; i < products.length; i++) {%>
+        <div class="product" data-id="<%=products[i].id%>">
+				<h3><%=products[i].name%></h3>
+				<p><%=products[i].description%></p>
+                <p><%=products[i].price%> €</p>
+				<img src="<%= products[i].img_path %>">
+                <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button class="js-add-bucket" data-id="<%=products[i].id%>">ajouter ou panier</button>	
+        </div>
+        <%}%>
+    </article>
+</section>
+<script src="/js/index.js"></script>

@@ -1,0 +1,23 @@
+<a class="back" href="/">Retour</a>
+<section class="article-detail">
+	<h1><%=post.title%></h1>
+	<p><%=post.content%></p>
+</section>
+<section class="comment-article">
+	<ul>
+		<%for(let i = 0; i < comments.length; i++) {%>
+			<li>
+				<h3><%=comments[i].name%></h3>
+				<p><%=comments[i].content%></p>
+				<p class="date-comment"><%=new Date(comments[i].date).toLocaleDateString()%></p>
+			</li>
+		<%}%>
+	</ul>
+</section>
+<form action="/add_comment/<%=post.id%>" method="post">
+	<label>Pseudo</label>
+	<input type="text" name="name">
+	<label>commentaire</label>
+	<textarea name="content"></textarea>
+	<input type="submit" name="Enregistrer">
+</form>
