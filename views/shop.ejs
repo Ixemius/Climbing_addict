@@ -13,7 +13,7 @@
 				<p><%=products[i].description%></p>
                 <p><%=products[i].price%> €</p>
 				<img src="<%= products[i].img_path %>">
-                <form method="post" action="/add_bucket/">
+                <form method="post" action="/add_bucket/<%=products[i].id%>">
                 <select name="quantity">
                     <option value="0">Selectionner la quantité</option>
                     <option value="1">1</option>

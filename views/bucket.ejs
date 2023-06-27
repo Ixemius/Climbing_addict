@@ -1,11 +1,14 @@
 <section>
-    <article class="produc-bucket">
+    <article class="product-bucket">
         <%for(let i=0; i < order.length; i++) {%>
             <div class="product" data-id="<%=order[i].id%>">
-                <h3><%=order[i].name%></h3>
-                <p><%=order[i].description%></p>
-                <p><%=order[i].total_amount%> €</p>
+                <h3>Produit : <%=order[i].product_name%></h3>
                 <img src="/<%=order[i].img_path %>" alt="img produit">
+                <p>Description : <%=order[i].description%></p>
+                <p>Quantité : <%=order[i].quantity%></p>
+                <p>Total : <%=order[i].total_amount%> €</p>
+                <button class="remove js-remove-bucketProduct-button" data-id="<%=order[i].id%>">suprimer le produit</button>
             <% } %>
+            <a href="/bucket_submit/">Valider la commande</a>
     </article>
 </section>

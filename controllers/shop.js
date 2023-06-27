@@ -17,6 +17,7 @@ export const AddBucketSubmit = (req, res) => {
     
     pool.query(sql1,[id] ,function (error, products, fields) {
         let quantity = parseInt(req.body.quantity);
+        let productName = products[0].name;
         let totalAmount = products[0].price * quantity;
         let imgPath = products[0].img_path;
 
@@ -25,7 +26,9 @@ export const AddBucketSubmit = (req, res) => {
             total_amount: totalAmount,
             user_id: userId,
             product_id: id,
-            img_path: imgPath
+            img_path: imgPath,
+            quantity: quantity,
+            product_name: productName
         }
 
         let sql2 = 'INSERT INTO Orders SET ?'
@@ -41,9 +44,42 @@ export const AddBucketSubmit = (req, res) => {
 
 }
 export const dipslayBucket = (req, res) => {
-    let sql = 'SELECT * FROM Orders'
+    let id = req.session.userId;
+    let sql = 'SELECT * FROM Orders WHERE user_id = ?'
 
-    pool.query(sql,function(error,order){
+    pool.query(sql,[id],function(error,order){
         res.render('layout', {template: 'bucket', order: order});
     })
+}
+
+export const BucketSubmit = (req,res) => {
+    let id = req.session.userId;
+    let sql = 'DELETE FROM Orders WHERE user_id = ?'
+
+    pool.query(sql,[id],function(error,bucket){
+        res.render('layout', {template: 'bucket_submit', bucket: bucket})
+
+    })
+}
+export const DeleteBucket = (req, res) => {
+
+    //on récupère l'id de l'article à supprimer, il a été passé en paramètre de l'url
+    let id = req.body.id;
+    console.log(id)
+
+
+    
+    // requete de suppresion en BDD
+    let sql = 'DELETE FROM Orders WHERE id = ?';
+
+    pool.query(sql, [id], function (error, result, fields) {
+        if (error) {
+            console.log(error)
+            res.status(500).send({
+                error: 'Error when delete bucket'
+            });
+        } else {
+                res.status(204).send();
+        }
+    });
 }
