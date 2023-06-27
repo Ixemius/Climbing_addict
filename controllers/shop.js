@@ -1,5 +1,6 @@
 import pool from "../config/database.js";
 import { v4 as uuidv4 } from 'uuid';
+import pkg from 'lodash';
 
 export const Shop = (req, res) => {
     let sql = 'SELECT id, name, description, price, img_path FROM Products';
@@ -18,19 +19,19 @@ export const AddBucketSubmit = (req, res) => {
     pool.query(sql1,[id] ,function (error, products, fields) {
         let quantity = parseInt(req.body.quantity);
         let productName = products[0].name;
-        let totalAmount = products[0].price * quantity;
+        let amount = products[0].price * quantity;
         let imgPath = products[0].img_path;
+        
 
         let newOrders = {
             id: uuidv4(),
-            total_amount: totalAmount,
+            amount: amount,
             user_id: userId,
             product_id: id,
             img_path: imgPath,
             quantity: quantity,
             product_name: productName
         }
-
         let sql2 = 'INSERT INTO Orders SET ?'
 
         pool.query(sql2,[newOrders], (error) =>{
@@ -46,9 +47,11 @@ export const AddBucketSubmit = (req, res) => {
 export const dipslayBucket = (req, res) => {
     let id = req.session.userId;
     let sql = 'SELECT * FROM Orders WHERE user_id = ?'
+    const { reduce } = pkg;
 
     pool.query(sql,[id],function(error,order){
-        res.render('layout', {template: 'bucket', order: order});
+        const totalAmount = reduce(order, (sum, product) => sum + product.amount, 0);
+        res.render('layout', {template: 'bucket', order: order, totalAmount: totalAmount});
     })
 }
 
@@ -64,7 +67,7 @@ export const BucketSubmit = (req,res) => {
 export const DeleteBucket = (req, res) => {
 
     //on récupère l'id de l'article à supprimer, il a été passé en paramètre de l'url
-    let id = req.body.id;
+    let id = req.params.id;
     console.log(id)
 
 
