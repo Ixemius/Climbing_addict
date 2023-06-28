@@ -10,4 +10,7 @@ export const Home = (req, res) => {
     });
 }
 
+export const NotFound = (req,res) => {
 
+    res.status(404).render('not_found');
+}
