@@ -57,6 +57,7 @@ export const RegisterSubmit = function (req, res) {
                     res.status(500).send('Erreur de base de données');
                 } else {
                     req.session.isUser = true;
+                    req.session.connected = true;
                     res.redirect('/');
                 }
             });
