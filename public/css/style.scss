@@ -1,4 +1,28 @@
+@font-face {
+    font-family: 'OpenDyslexic';
+    src : url(../font/OpenDyslexic-Regular.woff) format('woff');
+}
+@font-face {
+    font-family: 'OpenDyslexic';
+    src : url(../font/OpenDyslexic-Italic.woff) format('woff');
+    font-style:italic;
+}
+@font-face {
+    font-family: 'OpenDyslexic';
+    src : url(../font/OpenDyslexic-Bold.woff) format('woff');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'OpenDyslexic';
+    src : url(../font/OpenDyslexic-Bold-Italic.woff) format('woff');
+    font-weight: bold;
+    font-style:italic;
+}
+
 @import "home";
 @import "layout";
 @import "normalize";
 @import "shop";
+.dyslexia {
+    font-family: 'OpenDyslexic', sans-serif;
+}

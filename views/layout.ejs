@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,12 +12,13 @@
 </head>
 
 <body>
+
     <header class="header">
-        
+
         <div class="title_logo">
             <img class="logo" src="/img/logo.png" alt="logo site web">
             <h1>ClimbingAddict</h1>
-            
+
         </div>
         <button id="dys">Dyslexie</button>
         <nav class="nav">
@@ -25,22 +28,24 @@
             <% if (locals.isAdmin) { %>
                 <a href="/admin">Administration</a>
                 <a href="/logout">Déconnexion</a>
-            <% } else {%>
-             <% if(locals.isUser){ %>
-                <a href="/logout">Déconnexion</a>
-            <% } else { %>
-                <a href="/register">Inscription</a>
-                <a href="/login">Connexion</a>
-            <% } %>
-            <% } %>
+                <% } else {%>
+                    <% if(locals.isUser){ %>
+                        <a href="/logout">Déconnexion</a>
+                        <% } else { %>
+                            <a href="/register">Inscription</a>
+                            <a href="/login">Connexion</a>
+                            <% } %>
+                                <% } %>
         </nav>
     </header>
     <main>
         <%- include(template) -%>
     </main>
+
+    <footer class="footer">
+        <small>le blog parfait pour aimer l'escalade !</small>
+    </footer>
+    <script src="/js/dyslexia.js"></script>
 </body>
-<footer class="footer">
-    <small>le blog parfait pour aimer l'escalade !</small>
-</footer>
 
 </html>

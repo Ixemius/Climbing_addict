@@ -1,3 +1,23 @@
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url(../font/OpenDyslexic-Regular.woff) format("woff");
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url(../font/OpenDyslexic-Italic.woff) format("woff");
+  font-style: italic;
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url(../font/OpenDyslexic-Bold.woff) format("woff");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url(../font/OpenDyslexic-Bold-Italic.woff) format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
 .section-article {
   margin: auto;
   display: flex;
@@ -405,4 +425,8 @@ section article .product {
 }
 section article img {
   height: 10rem;
+}
+
+.dyslexia {
+  font-family: "OpenDyslexic", sans-serif;
 }/*# sourceMappingURL=style.css.map */
