@@ -2,6 +2,7 @@ import pool from "../config/database.js";
 import fs from "fs"
 import formidable from "formidable"
 import { v4 as uuidv4 } from 'uuid';
+import xss from 'xss';
 
 // AFFICHAGE DES ARTICLES POSTER PAR LES UTILISATEURS / ADMIN
 export const Admin = (req, res) => {
@@ -28,24 +29,38 @@ export const AddPost = (req, res) => {
     pool.query('SELECT * FROM ArticlesCategories', function (error, categories, fields) {
 
         // appel du template layout avec add_post où on fait passer les infos auteurs et catégories
-        res.render('layout', { template: 'add_post', categories: categories });
+        res.render('layout', { template: 'add_post', categories: categories, error: null });
     });
 }
 
 // ENVOIE DE LA REQUETE A LA BASE DE DONNEE LORS DU CLIQUE SUBMIT POUR AJOUTER UN ARTICLES 
 export const AddPostSubmit = (req, res) => {
+
     let id = req.session.userId;
-    const { title, content, categories } = req.body;
-    console.log(req.body)
-    console.log(id)
+    pool.query('SELECT * FROM ArticlesCategories', function (error, categories, fields) {
 
+        const { title, content, categorie } = req.body;
 
-    pool.query('INSERT INTO Articles (id, title, content, categorie_id, author_id,date) VALUES (?, ?, ?, ?, ?,NOW())', [uuidv4(), title, content, categories, id], function (error, result, fields) {
-        console.log(error)
-        // une fois le post créé en BDD on redirige vers la page / (home)
-        res.redirect('/');
+        const safeTitle = xss(title);
+        const safeContent = xss(content);
+        const inputRegex = /^[a-zA-Z0-9\s!?.,]+$/;
+
+        if (!inputRegex.test(safeTitle)) {
+            return res.render('layout', { template: 'add_post', categories: categories, error: 'Le titre n\'est pas valide' });
+        }
+        if (!inputRegex.test(safeContent)) {
+            return res.render('layout', { template: 'add_post', categories: categories, error: 'Le contenus de l\'articles n\'est pas valide' });
+        }
+        pool.query('INSERT INTO Articles (id, title, content, categorie_id, author_id,date) VALUES (?, ?, ?, ?, ?,NOW())', [uuidv4(), safeTitle, safeContent, categorie, id], function (error, result, fields) {
+            console.log(error)
+            // une fois le post créé en BDD on redirige vers la page / (home)
+            res.redirect('/');
+        });
+
     });
-};
+}
+
+
 
 // EDITER UN ARTICLES VIA L'INTERFACE ADMIN
 export const EditPost = (req, res) => {
@@ -102,63 +117,82 @@ export const AddProduct = (req, res) => {
     pool.query('SELECT * FROM ProductsCategories', function (error, categories, fields) {
 
         // appel du template layout avec add_post où on fait passer les infos auteurs et catégories
-        res.render('layout', { template: 'add_product', categories: categories });
+        res.render('layout', { template: 'add_product', categories: categories, error: null });
     });
 }
 
 // ENVOIE DE LA REQUETE A LA BASE DE DONNEE LORS DE LA VALIDATION DE L'AJOUT DU PRODUIT VIA L'INTERFACE ADMIN
 export const AddProductSubmit = (req, res) => {
 
-    //max size of the file uploaded
-    const SIZE_MAX = 5 * 1024 * 1024
+    pool.query('SELECT * FROM ProductsCategories', function (error, categories, fields) {
 
-    //allowed file extension
-    const authorizedExtention = ["jpg", "jpeg", "png"]
+        //max size of the file uploaded
+        const SIZE_MAX = 5 * 1024 * 1024
+        //allowed file extension
+        const authorizedExtention = ["jpg", "jpeg", "png"]
+        const form = new formidable.IncomingForm();
 
-    const form = new formidable.IncomingForm();
+        // error handling and send file
+        form.parse(req, (err, fields, files) => {
+            console.log(fields)
 
-    // error handling and send file
-    form.parse(req, (err, fields, files) => {
-        console.log(fields)
-
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Une erreur est survenue lors de l\'upload de l\'image.');
-        }
-
-
-        if (files.img.size > SIZE_MAX) {
-            return res.status(500).send("Votre image est trop lourde")
-        }
-
-        // the file path in the tmp
-        const path = files.img.filepath
-        //get file extension
-        const extension = files.img.originalFilename.split(".").pop()
-        // final folder
-        const newPath = "public/img/img_boutique/" + files.img.newFilename + "." + extension;
-
-
-        // option 1
-        if (!authorizedExtention.includes(extension)) {
-            return res.status(500).send("Le fichier n'a pas la bonne extention")
-        }
-
-        fs.copyFile(path, newPath, (err) => {
             if (err) {
-                console.log(err)
+                console.error(err);
+                return res.status(500).send('Une erreur est survenue lors de l\'upload de l\'image.');
             }
-        })
-        // send information to the database
+            if (files.img.size > SIZE_MAX) {
+                return res.status(500).send("Votre image est trop lourde")
+            }
 
-        // new path for the images stored in te BDD
-        const imgPath = "img/img_boutique/" + files.img.newFilename + "." + extension;
-        pool.query('INSERT INTO Products (id, name, description, price, stock_quantity, categories_id, img_path, date_added ) VALUES ( ?, ?, ?, ?, ?, ?, ?, NOW())',
-            [uuidv4(), fields.name, fields.description, fields.price, fields.stock_quantity, fields.categories, imgPath], function (error, result, fields) {
-                console.log(error)
-                // once the post is created in BDD, we redirect to the page/ (shop)
-                res.redirect('/shop');
-            });
+            const safeTitle = xss(fields.name);
+            const safeDescription = xss(fields.description);
+            const safePrice = xss(fields.price);
+            const safeStock_quantity = xss(fields.stock_quantity);
+    
+            const inputRegex = /^[a-zA-Z0-9\s]+$/;
+            const numberRegex = /^[0-9]+$/;
+    
+            if (!inputRegex.test(safeTitle)) {
+                return res.render('layout', { template: 'add_product', categories: categories, error: 'Le nom du produit n\'est pas valide' });
+            }
+            if (!inputRegex.test(safeDescription)) {
+                return res.render('layout', { template: 'add_product', categories: categories, error: 'Le description du produit n\'est pas valide' });
+            }
+            if (!numberRegex.test(safePrice)) {
+                return res.render('layout', { template: 'add_product', categories: categories, error: 'Le prix n\'est pas valide' });
+            }
+            if (!numberRegex.test(safeStock_quantity)) {
+                return res.render('layout', { template: 'add_product', categories: categories, error: 'La quantité n\'est pas valide' });
+            }
+
+            // the file path in the tmp
+            const path = files.img.filepath
+            //get file extension
+            const extension = files.img.originalFilename.split(".").pop()
+            // final folder
+            const newPath = "public/img/img_boutique/" + files.img.newFilename + "." + extension;
+
+            // option 1
+            if (!authorizedExtention.includes(extension)) {
+                return res.status(500).send("Le fichier n'a pas la bonne extention")
+            }
+
+            fs.copyFile(path, newPath, (err) => {
+                if (err) {
+                    console.log(err)
+                }
+            })
+            // send information to the database
+
+            // new path for the images stored in te BDD
+            const imgPath = "img/img_boutique/" + files.img.newFilename + "." + extension;
+            pool.query('INSERT INTO Products (id, name, description, price, stock_quantity, categories_id, img_path, date_added ) VALUES ( ?, ?, ?, ?, ?, ?, ?, NOW())',
+                [uuidv4(), safeTitle, safeDescription, safePrice, safeStock_quantity, fields.categories, imgPath], function (error, result, fields) {
+                    console.log(error)
+                    // once the post is created in BDD, we redirect to the page/ (shop)
+                    res.redirect('/admin');
+                });
+        });
     });
 }
 
@@ -169,7 +203,7 @@ export const DeleteProduct = (req, res) => {
     console.log(id)
 
 
-    
+
     // requete de suppresion en BDD
     let sql = 'DELETE FROM Products WHERE id = ?';
 
@@ -180,7 +214,7 @@ export const DeleteProduct = (req, res) => {
                 error: 'Error when delete product'
             });
         } else {
-                res.status(204).send();
+            res.status(204).send();
         }
     });
 }

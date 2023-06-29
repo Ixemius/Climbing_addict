@@ -75,7 +75,7 @@ function attachPostRemoveListeners() {
       });
     });
   }
-  
+  // fonction pour le calcul et l'actualisation du montant total
   function calculateAndUpdateTotalAmount() {
     // Sélectionner tous les éléments de produit dans le panier
     const productElements = document.querySelectorAll('.js-product-bucket .product');
@@ -92,7 +92,7 @@ function attachPostRemoveListeners() {
   
     // Mettre à jour l'affichage du montant total
     const totalAmountElement = document.querySelector('.js-total-amount');
-    totalAmountElement.textContent = totalAmount.toFixed(0);
+    totalAmountElement.textContent = totalAmount.toFixed(0) + ' €';
   }
   // Fonction pour attacher les écouteurs de suppression des produits dans le panier
   function attachBucketRemoveListeners() {

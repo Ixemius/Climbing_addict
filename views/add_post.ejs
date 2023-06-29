@@ -1,13 +1,14 @@
 <h1>Ajoutez un article</h1>
-
+<% if(error !== null){%>
+	<p><%=error%></p>
+	<%}%>
 <form action="/add_post" method="post">
 	<label>Titre de l'article</label>
 	<input type="text" name="title">
 	<label>Contenu de l'article</label>
 	<textarea name="content"></textarea>
 	<label>Choisir une image</label>
-	<input type="file" name="img" id="img">
-	<select name="categories">
+	<select name="categorie">
 		<% for(let i = 0; i < categories.length; i++) { %>
 			<option value="<%=categories[i].id%>"><%=categories[i].name%></option>
 		<% } %>

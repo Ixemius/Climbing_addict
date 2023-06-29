@@ -45,8 +45,6 @@ app.use(function (req, res, next) {
 
     const adminProtectedRoutes = [
         '/admin',
-        '/add_post',
-        '/add_post',
         '/edit_post/:id',
         '/edit_post/:id',
         '/delete_post/:id',
@@ -61,7 +59,8 @@ app.use(function (req, res, next) {
         '/add_bucket',
         '/add_bucket/:id',
         '/bucket_submit',
-        '/delete_bucket/:id'
+        '/delete_bucket/:id',
+        '/add_post',
     ];
     if (adminProtectedRoutes.indexOf(route) > -1 && !req.session.isAdmin) {
         res.redirect('/');

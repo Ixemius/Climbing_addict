@@ -1,4 +1,7 @@
 <fieldset>
+    <% if(error !== null){%>
+        <p><%=error%></p>
+        <%}%>
     <form action="/add_product" enctype="multipart/form-data" method="post">
         <label>Nom du produit</label>
         <input type="text" name="name" id="name">

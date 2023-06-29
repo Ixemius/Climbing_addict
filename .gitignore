@@ -13,7 +13,13 @@ debug.log
 # Fichiers de configuration
 config.js
 config.json
+# fichier css / map
 
+*.css
+*.css.map
+#sauf le fichier style
+!style.css
+!style.css.map
 # Dépendances spécifiques à l'IDE (ajoutez les fichiers propres à votre IDE si nécessaire)
 .vscode/
 .idea/
