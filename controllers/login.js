@@ -23,10 +23,12 @@ export const LoginSubmit = function (req, res) {
                             req.session.userId = result[0].id
                             if (result[0].role === 'admin') {
                                 req.session.isAdmin = true;
+                                req.session.connected = true;
                                 res.redirect('/admin');
                             } else {
                                 req.session.isUser = true;
-                                res.redirect("/")
+                                req.session.connected = true;
+                                res.redirect("/");
                             }
                         }
                         else {

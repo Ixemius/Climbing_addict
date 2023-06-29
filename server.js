@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(function (req, res, next) {
     res.locals.isAdmin = !!req.session.isAdmin;
     res.locals.isUser = !!req.session.isUser;
+    res.locals.conneted = !!req.session.connected;
     res.locals.userId = req.session.userId;
     res.locals.categorieId = req.session.categorieId;
 
@@ -46,13 +47,10 @@ app.use(function (req, res, next) {
     const adminProtectedRoutes = [
         '/admin',
         '/edit_post/:id',
-        '/edit_post/:id',
         '/delete_post/:id',
-        '/add_product',
         '/add_product',
         '/delete_product/:id',
         '/edit_product/:id',
-        '/edit_product/:id'
     ];
 
     const userProtectedRoutes = [
@@ -64,7 +62,7 @@ app.use(function (req, res, next) {
     ];
     if (adminProtectedRoutes.indexOf(route) > -1 && !req.session.isAdmin) {
         res.redirect('/');
-    } else if (userProtectedRoutes.indexOf(route) > -1 && !req.session.isUser) {
+    } else if (userProtectedRoutes.indexOf(route) > -1 && !req.session.connected) {
         res.redirect('/');
     } else {
         next();
