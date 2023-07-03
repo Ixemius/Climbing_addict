@@ -8,7 +8,6 @@ const router = express.Router();
 import {Home, NotFound} from "../controllers/home.js";
 import {Login, LoginSubmit, Logout} from "../controllers/login.js";
 import {Shop, AddBucketSubmit, dipslayBucket, BucketSubmit, DeleteBucket} from "../controllers/shop.js";
-import {About} from "../controllers/about.js";
 import {Register, RegisterSubmit} from "../controllers/register.js";
 import {Admin, AddPost, AddPostSubmit, AddProduct, AddProductSubmit, DeletePost, EditPost, EditPostSubmit, DeleteProduct, EditProductSubmit, EditProduct} from "../controllers/admin.js";
 import {Details, AddComment } from "../controllers/articles.js"
@@ -37,10 +36,6 @@ router.delete('/delete_bucket/:id', DeleteBucket)
 // //REGSITER PAGE
 router.get('/register', Register);
 router.post('/register', RegisterSubmit);
-
-//PAGE ABOUT
-router.get('/about', About);
-router.post('/about', About);
 
 // //ADMIN PAGE
 router.get('/admin', Admin);
