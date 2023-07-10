@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Climbing-addict</title>
 </head>
 
 <body>
@@ -20,29 +22,30 @@
             <h1>ClimbingAddict</h1>
 
         </div>
-        <button id="dys">Dyslexie</button>
+
         <nav class="nav">
-            <a href="/">Home</a>
-            <a href="/shop">Boutique</a>
+            <a class="navButton" href="/">Home</a>
+            <a class="navButton" href="/shop">Boutique</a>
             <% if (locals.isAdmin) { %>
-                <a href="/admin">Administration</a>
-                <a href="/logout">Déconnexion</a>
+                <a class="navButton" href="/admin">Administration</a>
+                <a class="navButton" href="/logout">Déconnexion</a>
                 <% } else {%>
                     <% if(locals.isUser){ %>
-                        <a href="/logout">Déconnexion</a>
+                        <a class="navButton" href="/logout">Déconnexion</a>
                         <% } else { %>
-                            <a href="/register">Inscription</a>
-                            <a href="/login">Connexion</a>
+                            <a class="navButton" href="/register">Inscription</a>
+                            <a class="navButton" href="/login">Connexion</a>
                             <% } %>
                                 <% } %>
         </nav>
+        <button id="dys">Dyslexie</button>
     </header>
     <main>
         <%- include(template) -%>
     </main>
 
     <footer class="footer">
-        <small>le blog parfait pour aimer l'escalade !</small>
+        <a href="/policies">politique de confidentialité</a>
     </footer>
     <script src="/js/dyslexia.js"></script>
 </body>

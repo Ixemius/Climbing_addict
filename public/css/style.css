@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Oswald";
+  src: url("https://fonts.googleapis.com/css2?family=Oswald&display=swap") format("woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap") format("woff");
+}
+@font-face {
   font-family: "OpenDyslexic";
   src: url(../font/OpenDyslexic-Regular.woff) format("woff");
 }
@@ -39,7 +47,7 @@ article ul li {
 }
 
 .img-article {
-  height: 15rem;
+  width: 80%;
 }
 
 .display-article {
@@ -55,7 +63,9 @@ article ul li {
 }
 
 :root {
-  --backcolor: rgba(217,217,217,0.4);
+  --backcolor: rgba(217, 217, 217, 0.4);
+  --buttonBackcolor: #ffffff;
+  --textColor: black;
 }
 
 body {
@@ -69,6 +79,7 @@ body {
 
 p {
   text-align: justify;
+  color: var(--textColor);
 }
 
 .logo {
@@ -96,6 +107,21 @@ p {
   flex-direction: column;
   align-items: center;
   background-color: var(--backcolor);
+  width: 100%;
+}
+.nav .navButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0.5rem;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  width: 100%;
+}
+.nav .navButton:hover {
+  background-color: var(--buttonBackcolor);
+  color: #333;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -424,9 +450,27 @@ section article .product {
   width: 100%;
 }
 section article img {
-  height: 10rem;
+  width: 14rem;
 }
 
 .dyslexia {
   font-family: "OpenDyslexic", sans-serif;
+  font-size: 12px;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: "oswald", sans-serif;
+}
+
+p, a, ul {
+  color: var(--textColor);
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 0.01em solid gray;
 }/*# sourceMappingURL=style.css.map */

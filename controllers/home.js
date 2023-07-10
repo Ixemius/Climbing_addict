@@ -5,12 +5,18 @@ export const Home = (req, res) => {
     // requete SQL qui va nous récupérer les informations 
     let sql = 'SELECT Users.name, Articles.id as auteur_id, Articles.date as date_publi, title, content FROM Articles INNER JOIN Users ON Articles.author_id = Users.id ORDER BY date_publi DESC';
 
-   pool.query(sql,function (error, posts) {
-            res.render('layout', {template: 'home', posts: posts});
+    pool.query(sql, function (error, posts) {
+        res.render('layout', { template: 'home', posts: posts });
     });
 }
 
-export const NotFound = (req,res) => {
+export const NotFound = (req, res) => {
 
     res.status(404).render('not_found');
 }
+
+export const Policies = (req, res) => {
+
+    res.render('layout', { template: 'policies' });
+}
+

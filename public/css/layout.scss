@@ -1,24 +1,31 @@
 :root {
-    --backcolor: rgba(217,217,217,0.4);
+    --backcolor: rgba(217, 217, 217, 0.4);
+    --buttonBackcolor : #ffffff;
+    --textColor : black;
 }
 
 
 body {
-    margin : auto;
+    margin: auto;
     background-image: url(../img/31un_f01i_220222.jpg);
     background-color: rgba(255, 255, 255, 0.875);
     background-blend-mode: overlay;
     background-repeat: repeat-y;
     background-size: contain;
-    
+
 }
+
 p {
     text-align: justify;
+    color: var(--textColor)
+
 }
-.logo{
+
+.logo {
     width: 30%;
     margin: 1rem;
 }
+
 .title_logo {
     display: flex;
     flex-direction: row;
@@ -33,9 +40,27 @@ p {
     display: flex;
     flex-direction: column;
 }
+
 .nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:var(--backcolor);
+    background-color: var(--backcolor);
+    width:100%;
+
+    .navButton {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0.5rem;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        width: 100%;
+    }
+
+    .navButton:hover {
+        background-color: var(--buttonBackcolor);
+        color: #333;
+    }
 }

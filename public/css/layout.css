@@ -1,5 +1,7 @@
 :root {
-  --backcolor: rgba(217,217,217,0.4);
+  --backcolor: rgba(217, 217, 217, 0.4);
+  --buttonBackcolor: #ffffff;
+  --textColor: black;
 }
 
 body {
@@ -13,6 +15,7 @@ body {
 
 p {
   text-align: justify;
+  color: var(--textColor);
 }
 
 .logo {
@@ -40,4 +43,19 @@ p {
   flex-direction: column;
   align-items: center;
   background-color: var(--backcolor);
+  width: 100%;
+}
+.nav .navButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0.5rem;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  width: 100%;
+}
+.nav .navButton:hover {
+  background-color: var(--buttonBackcolor);
+  color: #333;
 }/*# sourceMappingURL=layout.css.map */
