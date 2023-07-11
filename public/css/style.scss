@@ -26,26 +26,34 @@
     font-weight: bold;
     font-style:italic;
 }
+:root {
+    --backcolor: rgba(217, 217, 217, 0.4);
+    --buttonBackcolor : #ffffff;
+    --textColor : black;
+    --colorLien:lightgray;
+    --backgroundColorLien:rgb(34, 34, 247);
+}
 
 @import "home";
 @import "layout";
 @import "normalize";
 @import "shop";
 
+h1,h2,h3,h4{
+    font-family: 'Montserrat', sans-serif;
+}
 .dyslexia {
     font-family: 'OpenDyslexic', sans-serif;
     font-size:12px;
 }
-h1,h2,h3,h4{
-    font-family: 'Montserrat', sans-serif;
-}
+
 body{
     font-family: 'oswald', sans-serif;
 }
 p,a,ul{
     color: var(--textColor)
 }
-a {
+.navButton {
     text-decoration: none;
     border-bottom: 0.01em solid gray;
 }
