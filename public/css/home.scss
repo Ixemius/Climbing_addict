@@ -35,6 +35,7 @@ article {
     ul {
         margin: auto;
         padding: 0;
+
         * {
             padding: 0.5rem;
         }
@@ -43,8 +44,10 @@ article {
             list-style: none;
             border-bottom: 1px solid gray;
             margin: 0.5rem;
+
             a {
                 text-decoration: none;
+
                 h3 {
                     margin: 0;
                 }
@@ -53,12 +56,14 @@ article {
 
     }
 
-    >a, ul>li>a>h3 {
+    >a,
+    ul>li>a>h3 {
         color: var(--colorLien);
         background-color: var(--backgroundColorLien);
         padding: 1rem;
         border-radius: 5px;
         text-decoration: none;
+        margin: 1rem;
 
     }
 }
@@ -68,8 +73,68 @@ article {
         flex-wrap: wrap;
         flex-direction: row;
         align-items: stretch;
+        justify-content: center;
+
         article {
             width: 40%;
+        }
+    }
+}
+
+@media screen and (min-width: 1023px) {
+    .section-article {
+        width: 80%;
+
+        article {
+            display: flex;
+            flex-direction: column;
+
+            /* Cacher le contenu de .hover par défaut */
+            .hover {
+                display: none;
+                display: flex;
+                flex-direction: row;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: opacity 1s, transform 1s;
+
+                img {
+                    width: 40%;
+                }
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            /* Afficher le contenu de .hover lorsqu'il est survolé */
+            h2:hover+.hover {
+                display: flex;
+                align-items: center;
+                width: auto;
+                opacity: 1;
+                /* Lorsqu'il est affiché, changez l'opacité à 1 */
+                transform: translateY(0);
+                /* Lorsqu'il est affiché, remettez le contenu à sa position d'origine */
+                animation: repeatAnimation 1s infinite;
+                /* Ajoutez l'animation qui se répète indéfiniment */
+            }
+
+            /* Animation d'entrée pour .hover */
+            @keyframes repeatAnimation {
+                from {
+                    /* Définissez les styles initiaux pour l'animation d'entrée ici */
+                    /* Par exemple, translateY(-20px) pour commencer avec un déplacement vers le haut */
+                    transform: translateY(-20px);
+                }
+
+                to {
+                    /* Définissez les styles finaux pour l'animation d'entrée ici */
+                    /* Par exemple, translateY(0) pour revenir à la position d'origine */
+                    transform: translateY(0);
+                }
+            }
         }
     }
 }

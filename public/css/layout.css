@@ -1,10 +1,6 @@
 body {
   margin: auto;
-  background-image: url(../img/31un_f01i_220222.jpg);
-  background-color: rgba(255, 255, 255, 0.875);
-  background-blend-mode: overlay;
-  background-repeat: repeat-y;
-  background-size: contain;
+  background-color: rgb(237, 237, 237);
 }
 
 p {
@@ -25,21 +21,21 @@ p {
 }
 
 .header {
+  z-index: 1;
   background-image: url("../img/header.jpg");
   height: 40%;
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
 }
-
-.nav {
+.header .nav {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--backcolor);
   width: 100%;
 }
-.nav .navButton {
+.header .nav .navButton {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -49,7 +45,7 @@ p {
   font-weight: bold;
   width: 100%;
 }
-.nav .navButton:hover {
+.header .nav .navButton:hover {
   background-color: var(--buttonBackcolor);
   color: #333;
 }
@@ -58,10 +54,70 @@ p {
   background-image: url("../img/footer.jpg");
   height: 10rem;
   background-size: 100% 100%;
+  font-size: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer .footer_1,
+.footer .footer_2 {
+  margin: auto;
+  width: 45%;
+}
+.footer > div {
+  display: flex;
+  flex-direction: column;
+}
+.footer > div a {
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+}
+.footer > div .favicons {
+  display: flex;
+  flex-direction: row;
+}
+.footer > div .favicons a {
+  width: 25%;
+}
+.footer > div .favicons a .favicon {
+  width: 100%;
+}
+.footer ul {
+  padding: 0;
+}
+.footer li {
+  list-style: none;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .nav {
     flex-direction: row;
+  }
+  .logo {
+    width: 20%;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+  }
+  .header .nav {
+    height: 10%;
+    flex-direction: row;
+  }
+  .header .dyslexie {
+    height: 10%;
+  }
+  .footer > div .favicons a .favicon {
+    width: 50%;
   }
 }/*# sourceMappingURL=layout.css.map */

@@ -38,16 +38,34 @@
                             <% } %>
                                 <% } %>
         </nav>
-        <button id="dys">Dyslexie</button>
+        <button class="dyslexie" id="dys">Dyslexie</button>
     </header>
     <main>
         <%- include(template) -%>
     </main>
 
     <footer class="footer">
-        <a href="/policies">politique de confidentialité</a>
+        <div class="footer_1">
+            <a href="/policies">politique de confidentialité</a>
+            <div class="favicons">
+                <a href="https://www.instagram.com/"><img class="favicon" src="./img/favicon/icons8-instagram.svg"
+                        alt="icone instgram"></a>
+                <a href="https://fr-fr.facebook.com/"><img class="favicon" src="./img/favicon/icons8-facebook.svg"
+                        alt="icone facebook"></a>
+                <a href="https://twitter.com/i/flow/login?redirect_after_login=%2F%3Flang%3Dfr"><img class="favicon"
+                        src="./img/favicon/icons8-twitter.svg" alt="icone twitter"></a>
+            </div>
+        </div>
+        <div class="footer_2">
+            <p>contact:</p>
+            <ul>
+                <li><a href="mailto:timothee.quillon@gmail.com"> Email : timothee.quillon@gmail.com</a></li>
+                <li><a href="tel:+123456789">Téléphone : 1234567890</a></li>
+            </ul>
+        </div>
     </footer>
     <script src="/js/dyslexia.js"></script>
+    <script src="/js/hover.js"></script>
 </body>
 
 </html>

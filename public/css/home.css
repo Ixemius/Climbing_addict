@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .section-article {
   margin: auto;
   display: flex;
@@ -45,12 +46,14 @@ article ul li {
 .display-article ul li a h3 {
   margin: 0;
 }
-.display-article > a, .display-article ul > li > a > h3 {
+.display-article > a,
+.display-article ul > li > a > h3 {
   color: var(--colorLien);
   background-color: var(--backgroundColorLien);
   padding: 1rem;
   border-radius: 5px;
   text-decoration: none;
+  margin: 1rem;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -58,8 +61,59 @@ article ul li {
     flex-wrap: wrap;
     flex-direction: row;
     align-items: stretch;
+    justify-content: center;
   }
   .section-article article {
     width: 40%;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .section-article {
+    width: 80%;
+  }
+  .section-article article {
+    display: flex;
+    flex-direction: column;
+    /* Cacher le contenu de .hover par défaut */
+    /* Afficher le contenu de .hover lorsqu'il est survolé */
+    /* Animation d'entrée pour .hover */
+  }
+  .section-article article .hover {
+    display: none;
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s, transform 1s;
+  }
+  .section-article article .hover img {
+    width: 40%;
+  }
+  .section-article article .hover div {
+    display: flex;
+    flex-direction: column;
+  }
+  .section-article article h2:hover + .hover {
+    display: flex;
+    align-items: center;
+    width: auto;
+    opacity: 1;
+    /* Lorsqu'il est affiché, changez l'opacité à 1 */
+    transform: translateY(0);
+    /* Lorsqu'il est affiché, remettez le contenu à sa position d'origine */
+    animation: repeatAnimation 1s infinite;
+    /* Ajoutez l'animation qui se répète indéfiniment */
+  }
+  @keyframes repeatAnimation {
+    from {
+      /* Définissez les styles initiaux pour l'animation d'entrée ici */
+      /* Par exemple, translateY(-20px) pour commencer avec un déplacement vers le haut */
+      transform: translateY(-20px);
+    }
+    to {
+      /* Définissez les styles finaux pour l'animation d'entrée ici */
+      /* Par exemple, translateY(0) pour revenir à la position d'origine */
+      transform: translateY(0);
+    }
   }
 }/*# sourceMappingURL=home.css.map */
