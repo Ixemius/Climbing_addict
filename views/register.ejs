@@ -1,18 +1,33 @@
-<fieldset>
+<fieldset class="form_inscr_login">
+    <legend>Inscription</legend>
     <form action="/register" method="post">
-        <% if(error !== null ){ %>
-            <p class="error"><%= error %></p>
-        <% } %>
-        <label>Prénom</label>
-        <input type="text" name="name" id="name">
-        <label>Nom</label>
-        <input type="text" name="firstname" id="firstname">
-        <label>Email</label>
-        <input type="email" name="email" id="email">
-        <label>Mot de passe</label>
-        <input type="password" name="password" id="password">
-        <label>Confirmé mot de passe</label>
-        <input type="password" name="confirmPassword" id="cnofirmPassword">
-        <input type="submit" name="submit" id="submit">
+        <% if(error !==null ){ %>
+            <p class="error">
+                <%= error %>
+            </p>
+            <% } %>
+                <div>
+                    <label>Prénom</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div>
+                    <label>Nom</label>
+                    <input type="text" name="firstname" id="firstname">
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="email" name="email" id="email">
+                </div>
+                <div>
+                    <label>Mot de passe</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div>
+                    <label>Confirmé mot de passe</label>
+                    <input type="password" name="confirmPassword" id="cnofirmPassword">
+                </div>
+                <div>
+                    <input class="send" type="submit" name="submit" id="submit">
+                </div>
     </form>
 </fieldset>

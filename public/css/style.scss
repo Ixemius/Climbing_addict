@@ -34,10 +34,12 @@
     --backgroundColorLien:rgb(34, 34, 247);
 }
 
+@import "normalize";
 @import "home";
 @import "layout";
-@import "normalize";
 @import "shop";
+@import "form_inscri_login";
+
 
 h1,h2,h3,h4{
     font-family: 'Montserrat', sans-serif;

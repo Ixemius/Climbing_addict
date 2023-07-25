@@ -2,6 +2,8 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
+  width: 80%;
 }
 section article {
   display: flex;
@@ -16,4 +18,28 @@ section article .product {
 }
 section article img {
   width: 14rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  section article {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  section article .product {
+    width: 35%;
+  }
+}
+@media screen and (min-width: 1023px) {
+  section {
+    width: 90%;
+  }
+  section article {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  section article .product {
+    width: 30%;
+  }
 }/*# sourceMappingURL=shop.css.map */

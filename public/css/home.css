@@ -20,7 +20,7 @@ article ul li {
 }
 
 .img-article {
-  width: 80%;
+  width: 100%;
 }
 
 .display-article {
@@ -76,15 +76,12 @@ article ul li {
     flex-direction: column;
     /* Cacher le contenu de .hover par défaut */
     /* Afficher le contenu de .hover lorsqu'il est survolé */
-    /* Animation d'entrée pour .hover */
   }
   .section-article article .hover {
-    display: none;
-    display: flex;
-    flex-direction: row;
     opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 1s, transform 1s;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 1s, max-height 2s;
   }
   .section-article article .hover img {
     width: 40%;
@@ -95,25 +92,9 @@ article ul li {
   }
   .section-article article h2:hover + .hover {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    width: auto;
     opacity: 1;
-    /* Lorsqu'il est affiché, changez l'opacité à 1 */
-    transform: translateY(0);
-    /* Lorsqu'il est affiché, remettez le contenu à sa position d'origine */
-    animation: repeatAnimation 1s infinite;
-    /* Ajoutez l'animation qui se répète indéfiniment */
-  }
-  @keyframes repeatAnimation {
-    from {
-      /* Définissez les styles initiaux pour l'animation d'entrée ici */
-      /* Par exemple, translateY(-20px) pour commencer avec un déplacement vers le haut */
-      transform: translateY(-20px);
-    }
-    to {
-      /* Définissez les styles finaux pour l'animation d'entrée ici */
-      /* Par exemple, translateY(0) pour revenir à la position d'origine */
-      transform: translateY(0);
-    }
+    max-height: 500px; /* Ajustez cette valeur pour déterminer la hauteur maximale d'affichage */
   }
 }/*# sourceMappingURL=home.css.map */
