@@ -1,23 +1,39 @@
 <a class="back" href="/">Retour</a>
-<section class="article-detail">
-	<h1><%=post.title%></h1>
-	<p><%=post.content%></p>
+<section class="article_detail">
+	<article class="detail_post">
+		<h1>
+			<%=post.title%>
+		</h1>
+		<p>
+			<%=post.content%>
+		</p>
+	</article>
+	<article class="comment_article">
+		<h2>Commentaire</h3>
+			<ul>
+				<%for(let i=0; i < comments.length; i++) {%>
+					<li>
+						<h3>De : <%=comments[i].name%>
+						</h3>
+						<p>
+							<%=comments[i].content%>
+						</p>
+						<p class="date-comment">Le : <%=new Date(comments[i].date).toLocaleDateString()%>
+						</p>
+					</li>
+					<%}%>
+			</ul>
+	</article>
+	<article class="form_add_comment">
+		<fieldset>
+			<legend>Ajouter un commentaire</legend>
+			<form class="add_comment" action="/add_comment/<%=post.id%>" method="post">
+				<label>Pseudo</label>
+				<input type="text" name="name">
+				<label>commentaire</label>
+				<textarea name="content"></textarea>
+				<input type="submit" name="Enregistrer">
+			</form>
+		</fieldset>
+	</article>
 </section>
-<section class="comment-article">
-	<ul>
-		<%for(let i = 0; i < comments.length; i++) {%>
-			<li>
-				<h3><%=comments[i].name%></h3>
-				<p><%=comments[i].content%></p>
-				<p class="date-comment"><%=new Date(comments[i].date).toLocaleDateString()%></p>
-			</li>
-		<%}%>
-	</ul>
-</section>
-<form action="/add_comment/<%=post.id%>" method="post">
-	<label>Pseudo</label>
-	<input type="text" name="name">
-	<label>commentaire</label>
-	<textarea name="content"></textarea>
-	<input type="submit" name="Enregistrer">
-</form>

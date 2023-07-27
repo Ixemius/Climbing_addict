@@ -349,6 +349,7 @@ template {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: auto;
 }
 
 article {
@@ -435,7 +436,7 @@ article ul li {
     display: flex;
     flex-direction: column;
   }
-  .section-article article h2:hover + .hover {
+  .section-article article > .title_hover:hover + .hover {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -657,6 +658,77 @@ main .form_inscr_login form div .send {
     width: 10%;
   }
 }
+main {
+  display: flex;
+  flex-direction: column;
+}
+main .admin .add_post_product {
+  display: flex;
+  flex-direction: column;
+}
+main .admin .add_post_product div {
+  display: flex;
+  flex-direction: row;
+}
+main .admin .post_table, main .admin .product_table {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+}
+
+.article_detail, .detail_post, .comment_article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment_article ul li {
+  list-style: none;
+  border-bottom: 1px solid gray;
+}
+
+.form_add_comment fieldset {
+  border-radius: 5px;
+}
+.form_add_comment fieldset form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.field_add_post {
+  width: 100%;
+}
+.field_add_post .add_post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+.field_add_post .add_post > input, .field_add_post .add_post textarea {
+  width: 80%;
+  margin: 1rem;
+  resize: none;
+}
+
+.form_add_product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  border-radius: 5px;
+}
+.form_add_product .add_product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form_add_product input, .form_add_product select {
+  margin: 1rem;
+  width: 80%;
+}
+
 h1, h2, h3, h4 {
   font-family: "Montserrat", sans-serif;
 }

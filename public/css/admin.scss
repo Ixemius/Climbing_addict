@@ -1,0 +1,26 @@
+main {
+    display: flex;
+    flex-direction: column;
+
+    .admin {
+        .add_post_product {
+            display: flex;
+            flex-direction: column;
+
+            div {
+                display: flex;
+                flex-direction: row;
+            }
+
+        }
+
+        .post_table, .product_table{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: auto;
+        }
+        
+    }
+
+}
