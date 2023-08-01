@@ -3,6 +3,8 @@ import fs from "fs"
 import formidable from "formidable"
 import { v4 as uuidv4 } from 'uuid';
 import xss from 'xss';
+import path from 'path';
+
 
 // AFFICHAGE DES ARTICLES POSTER PAR LES UTILISATEURS / ADMIN
 export const Admin = (req, res) => {
@@ -148,10 +150,10 @@ export const AddProductSubmit = (req, res) => {
             const safeDescription = xss(fields.description);
             const safePrice = xss(fields.price);
             const safeStock_quantity = xss(fields.stock_quantity);
-    
+
             const inputRegex = /^[a-zA-Z0-9\s]+$/;
             const numberRegex = /^[0-9]+$/;
-    
+
             if (!inputRegex.test(safeTitle)) {
                 return res.render('layout', { template: 'add_product', categories: categories, error: 'Le nom du produit n\'est pas valide' });
             }
@@ -202,8 +204,6 @@ export const DeleteProduct = (req, res) => {
     let id = req.params.id;
     console.log(id)
 
-
-
     // requete de suppresion en BDD
     let sql = 'DELETE FROM Products WHERE id = ?';
 
@@ -214,10 +214,11 @@ export const DeleteProduct = (req, res) => {
                 error: 'Error when delete product'
             });
         } else {
+
             res.status(204).send();
         }
     });
-}
+};
 
 export const EditProduct = (req, res) => {
 
