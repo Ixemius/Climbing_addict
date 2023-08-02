@@ -1,5 +1,6 @@
 import pool from '../config/database.js';
 import bcrypt from 'bcrypt';
+import xss from 'xss';
 
 export const Login = function (req, res) {
     res.render('layout', { template: 'login', error: null });
@@ -8,8 +9,20 @@ export const Login = function (req, res) {
 export const LoginSubmit = function (req, res) {
     const { email, password } = req.body;
 
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/;
+    const inputRegex = /^[a-zA-Z0-9\s!,?.]+$/;
+
+    const safePassword = xss(password);
+    const safeEmail = xss(email);
+
     if (email === '' || password === '') {
         return res.render('layout', { template: 'login', error: 'Veulliez remplir les champs de saisis' });
+    }
+    if (!emailRegex.test(safeEmail)) {
+        return res.render('layout', { template: 'login', error: 'L\'e-mail ou le mot de passe n\'est pas valide' });
+    }
+    if (safePassword.length < 8 || !inputRegex.test(safePassword)) {
+        return res.render('layout', { template: 'login', error: 'Le mot de passe doit contenir au moins 8 caractères et ne doit pas contenir de caractères spéciaux' });
     } else {
         pool.query('SELECT * from Users WHERE email = ?', [email], function (error, result) {
             if (error) {
