@@ -56,6 +56,6 @@ router.get('/article/:id', Details);
 
 //ADD COMMENTS
 router.post('/add_comment/:id', AddComment);
-router.all('/*', NotFound)
+router.all('/*', NotFound);
 
 export default router;
