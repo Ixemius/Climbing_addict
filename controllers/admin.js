@@ -11,11 +11,9 @@ export const Admin = (req, res) => {
     let sql1 = 'SELECT id , date, title, content FROM Articles ORDER BY date DESC';
 
     pool.query(sql1, function (error, postsArticle, fields) {
-        // console.log(error, posts, fields);
         let sql2 = 'SELECT Products.id, Products.name, description, price, stock_quantity, img_path, date_added, ProductsCategories.name as categories FROM Products INNER JOIN ProductsCategories ON Products.categories_id = ProductsCategories.id ORDER BY date_added DESC';
 
         pool.query(sql2, function (error, postsProduit, fields) {
-            // console.log(error, posts, fields);
             res.render('layout', { template: 'admin', postsProduit: postsProduit, postsArticle: postsArticle });
 
         });
@@ -46,7 +44,7 @@ export const AddPostSubmit = (req, res) => {
         const safeTitle = xss(title);
         const safeContent = xss(content);
         const inputRegex = /^[a-zA-Z0-9\s!?.,]+$/;
-
+        //verification des inputs
         if (!inputRegex.test(safeTitle)) {
             return res.render('layout', { template: 'add_post', categories: categories, error: 'Le titre n\'est pas valide' });
         }
@@ -128,7 +126,7 @@ export const AddProductSubmit = (req, res) => {
 
     pool.query('SELECT * FROM ProductsCategories', function (error, categories, fields) {
 
-        //max size of the file uploaded
+        //taille maximal autorisé pour les fichiers envoyé
         const SIZE_MAX = 5 * 1024 * 1024
         //allowed file extension
         const authorizedExtention = ["jpg", "jpeg", "png"]
@@ -153,7 +151,7 @@ export const AddProductSubmit = (req, res) => {
 
             const inputRegex = /^[a-zA-Z0-9\s]+$/;
             const numberRegex = /^[0-9]+$/;
-
+            //verification des inputs
             if (!inputRegex.test(safeTitle)) {
                 return res.render('layout', { template: 'add_product', categories: categories, error: 'Le nom du produit n\'est pas valide' });
             }
@@ -167,14 +165,14 @@ export const AddProductSubmit = (req, res) => {
                 return res.render('layout', { template: 'add_product', categories: categories, error: 'La quantité n\'est pas valide' });
             }
 
-            // the file path in the tmp
+            // chemin du fichier
             const path = files.img.filepath
-            //get file extension
+            //recuperation de l'extension
             const extension = files.img.originalFilename.split(".").pop()
-            // final folder
+            //dossier final
             const newPath = "public/img/img_boutique/" + files.img.newFilename + "." + extension;
 
-            // option 1
+            // verification des extension de fichiers autorisé
             if (!authorizedExtention.includes(extension)) {
                 return res.status(500).send("Le fichier n'a pas la bonne extention")
             }
@@ -184,14 +182,14 @@ export const AddProductSubmit = (req, res) => {
                     console.log(err)
                 }
             })
-            // send information to the database
+            // evoie des information a la base de donnée
 
-            // new path for the images stored in te BDD
+            // nouveaux chemin pour l'image stocké dans la base de donnée
             const imgPath = "img/img_boutique/" + files.img.newFilename + "." + extension;
             pool.query('INSERT INTO Products (id, name, description, price, stock_quantity, categories_id, img_path, date_added ) VALUES ( ?, ?, ?, ?, ?, ?, ?, NOW())',
                 [uuidv4(), safeTitle, safeDescription, safePrice, safeStock_quantity, fields.categories, imgPath], function (error, result, fields) {
                     console.log(error)
-                    // once the post is created in BDD, we redirect to the page/ (shop)
+                    // redirection vers la page admin apres l'ajout du produit
                     res.redirect('/admin');
                 });
         });
@@ -224,7 +222,7 @@ export const EditProduct = (req, res) => {
 
 
     let id = req.params.id;
-
+    //requetes de recuperations des informations dans la base de donnée
     let sql1 = 'SELECT  id, name, description, price, stock_quantity FROM Products WHERE id = ?';
     pool.query(sql1, [id], function (error, editProduct, fields) {
 
